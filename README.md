@@ -1,1 +1,6 @@
 # E-Bridge
+
+#### Env Variables List
+* FRONTEND_PORT
+* FRONTEND_HOST
+* FRONTEND_PUBLIC_DOMAIN
