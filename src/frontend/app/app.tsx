@@ -30,7 +30,7 @@ import LeftButtonList from './components/leftnavbuttonlist/leftnavbuttonlist'
 
 const App: React.SFC = () => {
   return (
-    <div style={{height: '100%'}}>
+    <div styleName='app-container'>
       <LeftButtonList  {...test_properties}/>
     </div>
   )
