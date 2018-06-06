@@ -1,11 +1,23 @@
 @mixin leftnavbuttonlist
-  width: 5em
+  width: 12em
+  display: flex
+  flex-direction: column
+  border-right: solid black 1px
+  transition: width 1s
+  background-color: white
+  height: 100%
 
 .visible
   @include leftnavbuttonlist
 
 .hidden
   @include leftnavbuttonlist
+  width: 1em
+
+.spacer
+  height: 5em
 
 .toggle
-  @include leftnavbuttonlist
+  border: solid red 1px
+  background: none
+  float: right

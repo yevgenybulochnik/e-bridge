@@ -11,8 +11,8 @@ import LeftNavButton from '../leftnavbutton/leftnavbutton'
 const styles = require('./leftnavbuttonlist.sass');
 
 describe('LeftNavButtonList Presentational component', () => {
-  let navClickSpy: Sinon.SinonSpy;
-  let clickSpy: Sinon.SinonSpy
+  let navClickSpy = Sinon.spy();
+  let clickSpy = Sinon.spy()
   let test_properties: ILeftNavButtonList = {
       isHidden: false,
       onNavToggle: navClickSpy,
@@ -37,8 +37,6 @@ describe('LeftNavButtonList Presentational component', () => {
   let wrapper: Enzyme.ReactWrapper
 
   beforeEach(() => {
-    navClickSpy = Sinon.spy()
-    clickSpy = Sinon.spy()
     wrapper = Enzyme.mount(<LeftNavButtonList {...test_properties} />)
   })
 
@@ -67,7 +65,18 @@ describe('LeftNavButtonList Presentational component', () => {
     expect(wrapper.children().hasClass(`${styles.hidden}`)).to.be.true
   })
 
-  it('should register a click event on nav toggle')
-  it('should register a click event on <LeftNavButtonClick />')
+  it('should register a click event on nav toggle', () => {
+    let toggle = wrapper.find(`.${styles.toggle}`)
+    toggle.simulate('click')
+    expect(navClickSpy.calledOnce).to.be.true
+  })
+
+  it('should register a click event on <LeftNavButtonClick />', () => {
+    let buttons = wrapper.find(LeftNavButton)
+    buttons.forEach((node) => {
+      node.simulate('click')
+    })
+    expect(clickSpy.callCount).to.equal(test_properties.navButtons.length)
+  })
 
 })
