@@ -1,4 +1,6 @@
 import * as React from 'react';
+import * as CSSModules from 'react-css-modules';
+const styles = require('./app.sass')
 
 import LeftButtonList from './components/leftnavbuttonlist/leftnavbuttonlist'
 
@@ -34,4 +36,4 @@ const App: React.SFC = () => {
   )
 }
 
-export default App
+export default CSSModules(App, styles)
