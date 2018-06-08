@@ -16,6 +16,7 @@ describe('LeftNavButtonList Presentational component', () => {
   let test_properties: ILeftNavButtonList = {
       isHidden: false,
       onNavToggle: navClickSpy,
+      onButtonClick: clickSpy,
       navButtons: [
         {
           name: 'test button 1',

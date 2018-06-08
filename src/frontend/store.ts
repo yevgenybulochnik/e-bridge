@@ -9,27 +9,24 @@ declare module 'redux' {
 }
 // https://github.com/zalmoxisus/redux-devtools-extension/issues/492
 
-let navClickSpy = () => console.log('navClick');
-let clickSpy = () => console.log('buttonClick')
 let initialState = {
   navBar: {
       isHidden: false,
-      onNavToggle: navClickSpy,
       navButtons: [
         {
+          id: 1,
           name: 'test button 1',
           isActive: false,
-          onClick: clickSpy
         },
         {
-          name: 'test button 1',
-          isActive: true,
-          onClick: clickSpy
-        },
-        {
-          name: 'test button 1',
+          id: 2,
+          name: 'test button 2',
           isActive: false,
-          onClick: clickSpy
+        },
+        {
+          id: 3,
+          name: 'test button 3',
+          isActive: false,
         }
       ]
   }

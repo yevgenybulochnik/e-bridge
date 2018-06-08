@@ -8,6 +8,7 @@ const App: React.SFC = () => {
   return (
     <div styleName='app-container'>
       <LeftNav />
+      <div styleName="content-container"></div>
     </div>
   )
 }

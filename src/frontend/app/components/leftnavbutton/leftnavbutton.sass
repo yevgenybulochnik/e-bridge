@@ -6,6 +6,9 @@
   margin: 1px 0 0 0
   transition: background 0.2s, color 0.2s
   height: 1.2em
+  width: 100%
+  &:focus
+    outline: none
 
 .active
   @include leftnavbutton
@@ -15,7 +18,7 @@
 .inactive
   @include leftnavbutton
   &:hover
-    background: #7aabf9
+    background: #7aabf95c
     color: white
 
 .test

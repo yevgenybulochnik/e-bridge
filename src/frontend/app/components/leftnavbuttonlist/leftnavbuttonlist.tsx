@@ -8,16 +8,19 @@ export interface ILeftNavButtonList {
   isHidden: boolean;
   navButtons: any[];
   onNavToggle: () => void;
+  onButtonClick: (id: number) => void;
 }
 
-const LeftNavButtonList: React.SFC<ILeftNavButtonList> = ({navButtons, isHidden, onNavToggle}) => (
+const LeftNavButtonList: React.SFC<ILeftNavButtonList> = ({navButtons, isHidden, onNavToggle, onButtonClick}) => (
   <div styleName={isHidden? 'hidden' : 'visible'}>
     <div styleName='spacer'>
       <button styleName='toggle' onClick={() => onNavToggle()} >>>></button>
     </div>
-    {navButtons.map((button, index) => (
-      <LeftNavButton key={index} {...button} />
-    ))}
+    <div styleName='button-container'>
+      {navButtons.map((button, index) => (
+        <LeftNavButton key={button.id} {...button} onClick={() => onButtonClick(index)}/>
+      ))}
+    </div>
   </div>
 )
 
