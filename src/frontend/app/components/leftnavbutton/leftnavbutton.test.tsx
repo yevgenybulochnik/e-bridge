@@ -21,7 +21,8 @@ describe('LeftNavButton Presentational component', () => {
     test_properties = {
       name: 'Test Button',
       isActive: false,
-      onClick: clickSpy
+      onClick: clickSpy,
+      path: '/test'
     } as ILeftNavButtonProps;
 
     wrapper = Enzyme.shallow(<LeftNavButton {...test_properties} />);

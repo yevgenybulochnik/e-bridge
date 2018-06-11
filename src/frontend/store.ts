@@ -17,16 +17,19 @@ let initialState = {
           id: 1,
           name: 'test button 1',
           isActive: false,
+          path: '/test'
         },
         {
           id: 2,
           name: 'test button 2',
           isActive: false,
+          path: '/test2'
         },
         {
           id: 3,
           name: 'test button 3',
           isActive: false,
+          path: '/'
         }
       ]
   }
