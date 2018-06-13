@@ -17,6 +17,7 @@ module.exports = merge(baseConfig, {
     port: process.env.FRONTEND_PORT || 8080,
     host: process.env.FRONTEND_HOST || '',
     public: process.env.FRONTEND_PUBLIC_DOMAIN|| '',
+    historyApiFallback: true
   },
   module: {
     rules: [
