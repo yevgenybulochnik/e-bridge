@@ -19,7 +19,7 @@ class App {
 
   private routes(): void {
     let router = express.Router()
-    router.get('/', (req, res, next) => {
+    router.get('/api/', (req, res, next) => {
       res.json({
         message: 'Hello World!'
       })
