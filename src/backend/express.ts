@@ -1,7 +1,8 @@
-import * as path from 'path'
-import * as express from 'express'
-import * as logger from 'morgan'
-import * as bodyParser from 'body-parser'
+import * as path from 'path';
+import * as express from 'express';
+import * as logger from 'morgan';
+import * as bodyParser from 'body-parser';
+import * as cors from 'cors';
 
 class App {
   public express: express.Application
@@ -15,11 +16,12 @@ class App {
     this.express.use(logger('common'))
     this.express.use(bodyParser.json())
     this.express.use(bodyParser.urlencoded({extended: false}))
+    this.express.use(cors())
   }
 
   private routes(): void {
     let router = express.Router()
-    router.get('/api/', (req, res, next) => {
+    router.get('/api/asynctest', (req, res, next) => {
       res.json({
         message: 'Hello World!'
       })

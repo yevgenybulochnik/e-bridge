@@ -1,6 +1,10 @@
 import * as React from 'react';
 import * as CSSModules from 'react-css-modules';
 import { Switch, Route } from 'react-router-dom';
+
+import axios from 'axios';
+axios.defaults.baseURL = process.env.API_URL
+
 const styles = require('./app.sass')
 
 import LeftNav from './containers/leftnav/leftnav';
