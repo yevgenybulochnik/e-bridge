@@ -5,6 +5,10 @@ E-Bridge is a clinical support tool for low molecular weight heparin bridge ther
 
 #### Backend
 
+#### Testing
+
+#### Dev Dependencies
+
 #### Env Variables List
 * FRONTEND_PORT
 * FRONTEND_HOST
