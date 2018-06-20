@@ -6,6 +6,10 @@ E-Bridge is a clinical support tool for low molecular weight heparin bridge ther
 #### Backend
 
 #### Testing
+* Mocha
+* Chai
+* Enzyme
+* Sinon
 
 #### Dev Dependencies
 
