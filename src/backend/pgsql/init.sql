@@ -8,17 +8,34 @@ CREATE TABLE IF NOT EXISTS users (
     firstname varchar NOT NULL,
     lastname varchar NOT NULL,
     email varchar NOT NULL,
-    role varchar check (priv in ('PHARM', 'COS', 'ADMIN'))
+    role varchar check (role in ('PHARM', 'COS', 'ADMIN'))
 );
 
 INSERT INTO users (
     firstname,
     lastname,
     email,
-    priv
+    role
 ) VALUES (
     'yevgeny',
     'bulochnik',
     'yevgeny.bulochnik@gmail.com',
     'ADMIN'
-)
+);
+
+CREATE TABLE IF NOT EXISTS menu_items (
+    id serial PRIMARY KEY,
+    link varchar NOT NULL,
+    link_path varchar NOT NULL
+);
+
+INSERT INTO menu_items (
+    link,
+    link_path
+) VALUES (
+    'Bridge Designer',
+    '/bridgedesigner'
+), (
+    'Analytics',
+    '/analytics'
+);
