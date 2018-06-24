@@ -1,5 +1,5 @@
 import { Router , Request, Response, NextFunction } from 'express';
-import pg from '../queries/navQueries';
+import { queryNavItems } from '../queries/navQueries';
 
 export class NavRouter {
   router: Router
@@ -10,7 +10,7 @@ export class NavRouter {
   }
 
   public getNavLinks(req: Request, res: Response, next: NextFunction) {
-    pg.select().table('menu_items').then((result) => {
+    queryNavItems().then((result) => {
       res.send(result)
     })
   }

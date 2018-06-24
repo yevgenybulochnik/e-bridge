@@ -10,4 +10,8 @@ const pg = knex({
   }
 })
 
+export function queryNavItems() {
+  return pg.select().table('menu_items')
+}
+
 export default pg
