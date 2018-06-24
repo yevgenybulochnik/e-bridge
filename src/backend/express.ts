@@ -4,6 +4,8 @@ import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 
+import NavRouter from './routes/navRouter'
+
 class App {
   public express: express.Application
   constructor() {
@@ -20,13 +22,7 @@ class App {
   }
 
   private routes(): void {
-    let router = express.Router()
-    router.get('/api/asynctest', (req, res, next) => {
-      res.json({
-        message: 'Hello World!'
-      })
-    })
-    this.express.use('/', router)
+    this.express.use('/api/nav', NavRouter)
   }
 }
 
