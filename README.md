@@ -15,6 +15,7 @@ E-Bridge is a clinical support tool for low molecular weight heparin bridge ther
 * Webpack
 * Mocha-Webpack
 * Nodemon
+* Sass
 
 ### Env Variables List
 * FRONTEND_PORT
