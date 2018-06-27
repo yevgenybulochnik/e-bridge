@@ -1,5 +1,5 @@
 import { Router , Request, Response, NextFunction } from 'express';
-import { queryNavItems } from '../queries/navQueries';
+import * as controller from './navController';
 
 export class NavRouter {
   router: Router
@@ -10,7 +10,7 @@ export class NavRouter {
   }
 
   public getNavLinks(req: Request, res: Response, next: NextFunction) {
-    queryNavItems().then((result) => {
+    controller.queryNavItems().then((result) => {
       res.send(result)
     })
   }

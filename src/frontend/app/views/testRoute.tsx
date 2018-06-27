@@ -7,7 +7,7 @@ class TestRouteComponent extends React.Component<any, any> {
   }
 
   componentDidMount() {
-    axios.get('/nav').then( res => {
+    axios.get('/api/nav').then( res => {
       const result = res.data
       this.setState({message: result})
     } )

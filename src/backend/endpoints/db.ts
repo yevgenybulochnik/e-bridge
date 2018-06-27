@@ -1,6 +1,6 @@
 import * as knex from 'knex';
 
-const pg = knex({
+const db = knex({
   client: 'pg',
   connection: {
     host: 'localhost',
@@ -10,8 +10,4 @@ const pg = knex({
   }
 })
 
-export function queryNavItems() {
-  return pg.select().table('menu_items')
-}
-
-export default pg
+export default db
