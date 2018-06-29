@@ -16,4 +16,3 @@ module.exports =  {
       }
     }
 }
-console.log(BASE_PATH)
