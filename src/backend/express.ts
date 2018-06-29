@@ -4,8 +4,6 @@ import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 
-import NavRouter from './endpoints/nav/navRouter'
-
 class App {
   public express: express.Application
   constructor() {
@@ -22,7 +20,6 @@ class App {
   }
 
   private routes(): void {
-    this.express.use('/api/nav', NavRouter)
   }
 }
 
