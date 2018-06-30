@@ -1,8 +1,8 @@
 import * as http from 'http'
 import * as DotEnv from 'dotenv'
-import App from './express'
-
 DotEnv.config()
+
+import App from './express'
 
 const PORT = process.env.BACKEND_PORT || 3000
 const server = http.createServer(App)

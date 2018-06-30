@@ -1,4 +1,5 @@
-import * as config from '../knexfile';
+import config from '../knexfile';
+import * as knex from 'knex';
 const env = process.env.NODE_ENV || 'development';
 
-module.exports = require('knex')(config);
+export const dbConn = knex((config as any)[env])

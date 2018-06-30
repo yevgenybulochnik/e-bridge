@@ -22,5 +22,4 @@ class App {
   private routes(): void {
   }
 }
-
 export default new App().express
