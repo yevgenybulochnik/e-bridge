@@ -13,3 +13,5 @@ server.on('listening', onListen)
 function onListen() {
   console.log(`Listening on Port: ${PORT}`)
 }
+
+export default server
