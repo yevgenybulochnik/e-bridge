@@ -11,9 +11,15 @@ export function encodeToken(user: any) {
 }
 
 export function decodeToken(token: string, callback: any) {
-  const payload: any = jwt.verify(token, process.env.TOKEN_SECRET) 
+  const payload: any = jwt.verify(token, process.env.TOKEN_SECRET)
   const now = moment().unix()
   // check if the token has expired
   if (now > payload.exp) callback('Token has expired.')
   else callback(null, payload)
+}
+
+export async function asyncDecode(token:string) {
+  return jwt.verify(token, process.env.TOKEN_SECRET, (err, res) => {
+    return res
+  })
 }
