@@ -2,7 +2,7 @@ import * as path from 'path';
 
 const BASE_PATH = path.join(__dirname, 'db')
 
-const config = {
+module.exports  = {
     development: {
       client: 'pg',
       connection: {
@@ -13,8 +13,9 @@ const config = {
       },
       migrations: {
         directory: path.join(BASE_PATH, 'migrations')
+      },
+      seeds: {
+        directory: path.join(BASE_PATH, 'seeds', 'dev')
       }
     }
 }
-
-export default config
