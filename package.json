@@ -8,8 +8,10 @@
     "server": "nodemon --watch 'src/backend/**/*.ts' --exec 'ts-node' src/backend/server.ts",
     "web-dev:server": "concurrently \"npm run web-dev\" \"npm run server\"",
     "mocha-test": "mocha --require ts-node/register --require ./mocha/mochaSetup.ts \"src/**/*.test.{ts,tsx}\"",
-    "test": "mocha-webpack --require ts-node/register --require ./mocha/mocha-webpackSetup.ts --webpack-config ./webpack/mocha-webpack.config.js \"src/**/*.test.{ts,tsx}\"",
-    "test:watch": "npm run test -- --watch"
+    "test": "mocha-webpack --require ts-node/register --require ./mocha/mocha-webpackSetup.ts --webpack-config ./webpack/mocha-webpack.config.js",
+    "test:frontend": "mocha-webpack --require ts-node/register --require ./mocha/mocha-webpackSetup.ts --webpack-config ./webpack/mocha-webpack.config.js \"src/frontend/**/*.test.{ts,tsx}\"",
+    "test:backend": "mocha-webpack --require ts-node/register --require ./mocha/mocha-webpackSetup.ts --webpack-config ./webpack/mocha-webpack.config.js \"src/backend/**/*.test.{ts,tsx}\"",
+    "test:both": "mocha-webpack --require ts-node/register --require ./mocha/mocha-webpackSetup.ts --webpack-config ./webpack/mocha-webpack.config.js \"src/**/*.test.{ts,tsx}\""
   },
   "repository": {
     "type": "git",
@@ -80,6 +82,7 @@
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
     "knex": "^0.14.6",
+    "moment": "^2.22.2",
     "morgan": "^1.9.0",
     "pg": "^7.4.3",
     "react": "^16.3.2",
