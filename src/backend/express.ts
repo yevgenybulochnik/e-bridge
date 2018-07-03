@@ -4,6 +4,8 @@ import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 
+import AuthRouter from './endpoints/auth/authRouter';
+
 class App {
   public express: express.Application
   constructor() {
@@ -20,6 +22,7 @@ class App {
   }
 
   private routes(): void {
+    this.express.use('/api/v1/auth', AuthRouter)
   }
 }
 export default new App().express
