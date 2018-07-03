@@ -11,7 +11,10 @@
     "test": "mocha-webpack --require ts-node/register --require ./mocha/mocha-webpackSetup.ts --webpack-config ./webpack/mocha-webpack.config.js",
     "test:frontend": "mocha-webpack --require ts-node/register --require ./mocha/mocha-webpackSetup.ts --webpack-config ./webpack/mocha-webpack.config.js \"src/frontend/**/*.test.{ts,tsx}\"",
     "test:backend": "mocha-webpack --require ts-node/register --require ./mocha/mocha-webpackSetup.ts --webpack-config ./webpack/mocha-webpack.config.js \"src/backend/**/*.test.{ts,tsx}\"",
-    "test:both": "mocha-webpack --require ts-node/register --require ./mocha/mocha-webpackSetup.ts --webpack-config ./webpack/mocha-webpack.config.js \"src/**/*.test.{ts,tsx}\""
+    "test:both": "mocha-webpack --require ts-node/register --require ./mocha/mocha-webpackSetup.ts --webpack-config ./webpack/mocha-webpack.config.js \"src/**/*.test.{ts,tsx}\"",
+    "migrate:latest": "knex --knexfile src/backend/knexfile.ts migrate:latest",
+    "migrate:rollback": "knex --knexfile src/backend/knexfile.ts migrate:rollback",
+    "seed:run": "knex --knexfile src/backend/knexfile.ts seed:run"
   },
   "repository": {
     "type": "git",
