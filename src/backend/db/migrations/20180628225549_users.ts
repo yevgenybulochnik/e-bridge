@@ -5,6 +5,8 @@ exports.up = function (knex: Knex, Promise: Promise<any>) {
     table.increments('id');
     table.string('firstname').notNullable();
     table.string('lastname').notNullable();
+    table.string('email').unique().notNullable();
+    table.string('password').notNullable();
   })
 };
 
