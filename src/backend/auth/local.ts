@@ -5,7 +5,8 @@ export function encodeToken(user: any) {
   const payload = {
     exp: moment().add(14, 'days').unix(),
     iat: moment().unix(),
-    sub: user.id
+    sub: user.id,
+    email: user.email
   }
   return jwt.sign(payload, process.env.TOKEN_SECRET)
 }
