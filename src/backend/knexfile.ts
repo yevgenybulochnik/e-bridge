@@ -1,21 +1,31 @@
 import * as path from 'path';
 
-const BASE_PATH = path.join(__dirname, 'db')
+function adjustedPath() {
+  let projectRoot = 'e-bridge'
+  let processBasename = path.basename(process.cwd())
+  if (processBasename == projectRoot) {
+    let base = process.cwd()
+    let pathAdjusted = path.join(base, 'src', 'backend', 'db')
+    return pathAdjusted
+  } else {
+    return path.join(process.cwd(), 'db')
+  }
+}
 
-module.exports  = {
-    development: {
-      client: 'pg',
-      connection: {
-        host: 'localhost',
-        database: 'ebridge',
-        user: 'postgres',
-        password: 'postgres'
-      },
-      migrations: {
-        directory: path.join(BASE_PATH, 'migrations')
-      },
-      seeds: {
-        directory: path.join(BASE_PATH, 'seeds', 'dev')
-      }
+module.exports = {
+  development: {
+    client: 'pg',
+    connection: {
+      host: 'localhost',
+      database: 'ebridge',
+      user: 'postgres',
+      password: 'postgres'
+    },
+    migrations: {
+      directory: path.join(adjustedPath(), 'migrations')
+    },
+    seeds: {
+      directory: path.join(adjustedPath(), 'seeds', 'dev')
     }
+  }
 }
