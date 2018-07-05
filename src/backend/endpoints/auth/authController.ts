@@ -22,7 +22,7 @@ export function registerUser(req: Request, res: Response, next: NextFunction) {
 }
 
 function createUser(firstname: string, lastname: string, email: string, password: string) {
-  return bcrypt.hash(password, 10)
+  return bcrypt.hash(password, parseInt(process.env.WORK_FACTOR))
     .then(passwordHash => {
       return dbConn('users')
         .insert({
