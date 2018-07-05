@@ -16,13 +16,24 @@ export function registerUser(req: Request, res: Response, next: NextFunction) {
     })
     .catch((err) => {
       res.status(500).json({
-        status: 'error'
+        status: 'error',
+        message: err
       })
     })
 }
 
+function getUserByEmail(email: string) {
+  return dbConn('users')
+    .where({email})
+    .first()
+}
+
 function createUser(firstname: string, lastname: string, email: string, password: string) {
-  return bcrypt.hash(password, parseInt(process.env.WORK_FACTOR))
+  return getUserByEmail(email)
+    .then(user => {
+      if (user) throw 'User email already exists'
+      return bcrypt.hash(password, parseInt(process.env.WORK_FACTOR))
+    })
     .then(passwordHash => {
       return dbConn('users')
         .insert({
