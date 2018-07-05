@@ -1,6 +1,7 @@
 // Temp combine model and controller for testing purposes
 import { Request, Response, NextFunction } from 'express';
 import { dbConn } from '../../db/knex';
+import * as bcrypt from 'bcryptjs';
 import * as localAuth from '../../auth/local';
 
 export function registerUser(req: Request, res: Response, next: NextFunction) {
@@ -21,12 +22,15 @@ export function registerUser(req: Request, res: Response, next: NextFunction) {
 }
 
 function createUser(firstname: string, lastname: string, email: string, password: string) {
-  return dbConn('users')
-    .insert({
-      firstname,
-      lastname,
-      email, 
-      password
+  return bcrypt.hash(password, 10)
+    .then(passwordHash => {
+      return dbConn('users')
+        .insert({
+          firstname,
+          lastname,
+          email,
+          password: passwordHash
+        })
+        .returning(['id', 'email'])
     })
-    .returning(['id', 'email'])
 }
