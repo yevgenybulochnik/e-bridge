@@ -10,6 +10,16 @@ const expect = Chai.expect
 Chai.use(chaiHttp)
 
 describe('routes : auth', () => {
+  beforeEach(() => {
+    return dbConn.migrate.rollback()
+      .then(() => { return dbConn.migrate.latest() })
+      .then(() => { return dbConn.seed.run() })
+  })
+
+  afterEach(() => {
+    return dbConn.migrate.rollback()
+  })
+
   describe('POST /auth/register', () => {
     it('should register a new user', () => {
       Chai.request(server)
