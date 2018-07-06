@@ -22,6 +22,39 @@ export function registerUser(req: Request, res: Response, next: NextFunction) {
     })
 }
 
+export function loginUser(req: Request, res: Response, next: NextFunction) {
+  const { email, password } = req.body
+  return verifyUser(email, password)
+    .then(userClaims => {return localAuth.encodeToken(userClaims)})
+    .then((token) => {
+      res.status(200).json({
+        status: 'success',
+        token: token
+      })
+    })
+    .catch((err) => {
+      res.status(500).json({
+        status: 'error',
+        message: err
+      })
+    })
+}
+
+export function verifyUser(email: string, password: string) {
+  let validUser: any;
+  return getUserByEmail(email)
+    .then(user => {
+      if (!user) throw 'User email not found'
+      validUser = user
+      return bcrypt.compare(password, user.password)
+    })
+    .then(passwordIsValid => {
+      if (!passwordIsValid) throw 'Invalid password'
+      let jwtClaims = { id: validUser.id, email: validUser.email }
+      return jwtClaims
+    })
+}
+
 function getUserByEmail(email: string) {
   return dbConn('users')
     .where({email})
