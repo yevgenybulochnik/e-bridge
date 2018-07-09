@@ -39,14 +39,17 @@ describe('Routes : /auth', () => {
       it('should be type json', () => {
         expect(response.type).to.equal('application/json')
       })
-      it('should contain status and token keys in body', () => {
-        expect(response.body).to.have.all.keys('status', 'token')
+      it('should contain status and message keys in body', () => {
+        expect(response.body).to.have.all.keys('status', 'message')
       })
       it('should return status code 200', () => {
         expect(response.status).to.equal(200)
       })
       it('should return status success in body', () => {
         expect(response.body.status).to.equal('success')
+      })
+      it('should return message success in body', () => {
+        expect(response.body.message).to.equal('User John smith, john.smith@test.com registered')
       })
     })
     describe('Server Error user email exists response', () => {

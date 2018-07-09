@@ -21,7 +21,7 @@ export function createUser(firstname: string, lastname: string, email: string, p
           email,
           password: passwordHash
         })
-        .returning(['id', 'email'])
+        .returning(['firstname', 'lastname', 'email'])
     })
 }
 

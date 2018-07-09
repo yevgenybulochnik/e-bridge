@@ -6,11 +6,11 @@ import * as localAuth from '../../auth/local';
 export function registerUser(req: Request, res: Response, next: NextFunction) {
   const { firstname, lastname, email, password } = req.body
   return database.createUser(firstname, lastname, email, password)
-    .then((user) => {return localAuth.encodeToken(user[0]) })
-    .then((token) => {
+    .then((user) => {
+      let userData = user[0]
       res.status(200).json({
         status: 'success',
-        token: token
+        message: `User ${userData.firstname} ${userData.lastname}, ${userData.email} registered`
       })
     })
     .catch((err) => {
