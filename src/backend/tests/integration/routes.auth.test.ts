@@ -21,11 +21,20 @@ describe('Routes : /auth', () => {
   })
 
   describe('POST /auth/register', () => {
+    let token: any;
     describe('Server Success Response', () => {
       let response: any;
       before(async () => {
+        let loginResponse = await Chai.request(server)
+          .post('/api/v1/auth/login')
+          .send({
+            email: 'yevgeny.bulochnik@gmail.com',
+            password: 'password'
+          })
+        token = loginResponse.body.token
         response = await Chai.request(server)
           .post('/api/v1/auth/register')
+          .set('authorization', `Bearer ${token}`)
           .send({
             firstname: 'John',
             lastname: 'smith',
@@ -49,7 +58,7 @@ describe('Routes : /auth', () => {
         expect(response.body.status).to.equal('success')
       })
       it('should return message success in body', () => {
-        expect(response.body.message).to.equal('User John smith, john.smith@test.com registered')
+        expect(response.body.message).to.equal('User registered')
       })
     })
     describe('Server Error user email exists response', () => {
@@ -57,6 +66,7 @@ describe('Routes : /auth', () => {
       before(async () => {
         errorResponse = await Chai.request(server)
           .post('/api/v1/auth/register')
+          .set('authorization', `Bearer ${token}`)
           .send({
             firstname: 'John',
             lastname: 'smith',
@@ -107,10 +117,9 @@ describe('Routes : /auth', () => {
       it('should return status success in body', () => {
         expect(response.body.status).to.equal('success')
       })
-      it('should return a token, decode should have email and user id', async () => {
+      it('should return a token, decode should have user id', async () => {
         let payload: any = await localAuth.asyncDecode(response.body.token)
-        expect(payload).to.have.all.keys(['exp', 'iat', 'sub', 'email'])
-        expect(payload.email).to.equal('yevgeny.bulochnik@gmail.com')
+        expect(payload).to.have.all.keys(['exp', 'iat', 'sub'])
         expect(payload.sub).to.equal(1)
       })
     })

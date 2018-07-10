@@ -10,7 +10,7 @@ export function registerUser(req: Request, res: Response, next: NextFunction) {
       let userData = user[0]
       res.status(200).json({
         status: 'success',
-        message: `User ${userData.firstname} ${userData.lastname}, ${userData.email} registered`
+        message: 'User registered'
       })
     })
     .catch((err) => {
