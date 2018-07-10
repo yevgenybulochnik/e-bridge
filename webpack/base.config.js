@@ -1,9 +1,13 @@
 const webpack = require('webpack');
 const DotEnv = require('dotenv-webpack')
+const { TsConfigPathsPlugin } = require('awesome-typescript-loader')
 require('dotenv').config()
 
 module.exports = {
   resolve: {
+    plugins: [
+      new TsConfigPathsPlugin()
+    ],
     extensions: ['.ts', '.tsx', '.js', '.json']
   },
   module: {
