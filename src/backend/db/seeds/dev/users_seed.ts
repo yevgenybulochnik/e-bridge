@@ -1,9 +1,7 @@
 import * as Knex from 'knex';
 import * as bcrypt from 'bcryptjs';
 
-exports.seed = (knex: any, Promise: Promise<any>) => seed(knex)
-
-function seed(knex: Knex) {
+export function seed(knex: Knex) {
   return knex('users').del()
     .then(() => {
       return knex.raw(
