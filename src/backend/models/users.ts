@@ -34,7 +34,7 @@ export function verifyUser(email: string, password: string) {
       return bcrypt.compare(password, user.password)
     })
     .then(passwordIsValid => {
-      if (!passwordIsValid) throw 'Invalid password'
+      if (!passwordIsValid) throw 'Invalid Email/Password'
       let jwtClaims = { id: validUser.id, email: validUser.email }
       return jwtClaims
     })

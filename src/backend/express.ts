@@ -15,7 +15,7 @@ class App {
   }
 
   private middleware(): void {
-    this.express.use(logger('common'))
+    //this.express.use(logger('common'))
     this.express.use(bodyParser.json())
     this.express.use(bodyParser.urlencoded({extended: false}))
     this.express.use(cors())

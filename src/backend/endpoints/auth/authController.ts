@@ -1,7 +1,7 @@
 // Temp combine model and controller for testing purposes
 import { Request, Response, NextFunction } from 'express';
 import * as database from '../../models'
-import * as localAuth from '../../auth/local';
+import { encodeToken } from '../jwtProcessing'
 
 export function registerUser(req: Request, res: Response, next: NextFunction) {
   const { firstname, lastname, email, password } = req.body
@@ -24,7 +24,7 @@ export function registerUser(req: Request, res: Response, next: NextFunction) {
 export function loginUser(req: Request, res: Response, next: NextFunction) {
   const { email, password } = req.body
   return database.verifyUser(email, password)
-    .then(userClaims => {return localAuth.encodeToken(userClaims)})
+    .then(userClaims => {return encodeToken(userClaims)})
     .then((token) => {
       res.status(200).json({
         status: 'success',
