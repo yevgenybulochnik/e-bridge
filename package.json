@@ -4,7 +4,8 @@
   "description": "Clinical support tool for LMWH Bridge Therapy",
   "main": "index.js",
   "scripts": {
-    "web-dev": "webpack-dev-server --config ./webpack/web-dev.config.js",
+    "frontend:dev": "webpack-dev-server --config ./webpack/web-dev.config.js",
+    "frontend:unit": "webpack-dev-server --config ./webpack/web-unit.config.js",
     "server": "nodemon --watch 'src/backend/**/*.ts' --exec 'ts-node' src/backend/server.ts",
     "web-dev:server": "concurrently \"npm run web-dev\" \"npm run server\"",
     "mocha-test": "mocha --require ts-node/register --require ./mocha/mochaSetup.ts \"src/**/*.test.{ts,tsx}\"",
