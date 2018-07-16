@@ -54,6 +54,7 @@ class Login extends React.Component<any, LoginState> {
         onChange={(e) => handleChange('email', e)}
       />
       <TextField
+        type='password'
         label='Input User Password'
         placeholder='Password'
         value={password}
