@@ -47,7 +47,7 @@ class Login extends React.Component<any, LoginState> {
         tipIsOpen: !this.state.tipIsOpen
       })
       const { message } = err.response.data
-      if (message) {
+      if (typeof(message) == 'string') {
         this.setState({
           errorMessage: message
         })
