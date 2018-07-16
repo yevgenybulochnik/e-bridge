@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as CSSModules from 'react-css-modules';
-import axios from 'axios';
+import request from '@frontend/app/axios'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -10,27 +10,33 @@ interface LoginState {
   isLoading: boolean;
   email: string;
   password: string;
+  [key: string]: any;
 }
 
 class Login extends React.Component<any, LoginState> {
   state: LoginState = {
     isLoading: false,
-    email: 'test',
+    email: '',
     password: ''
   }
 
-  handleChange(property: any, event: any): any {
-    console.log([property])
+  handleChange = (property: any, event: any) => {
+    this.setState({
+      [property]: event.target.value
+    })
   }
 
   handleClick = () => {
     this.setState({isLoading: !this.state.isLoading})
-    axios.post('/auth/login', {
+    request.post('/auth/login', {
       email: this.state.email,
       password: this.state.password
     })
     .then(res => {
       console.log(res)
+    })
+    .catch(err => {
+      console.log(err.response.data.message)
     })
   }
 
@@ -51,6 +57,7 @@ class Login extends React.Component<any, LoginState> {
         label='Input User Password'
         placeholder='Password'
         value={password}
+        onChange={(e) => handleChange('password', e)}
       />
       <Button disabled={isLoading} onClick={handleClick} >Submit</Button>
       {isLoading ? (

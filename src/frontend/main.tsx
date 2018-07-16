@@ -7,6 +7,8 @@ import { Provider } from 'react-redux';
 import App from './app/app'
 import store from './store'
 
+console.log(process.env.API_URL)
+
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
