@@ -6,8 +6,8 @@
   "scripts": {
     "frontend:dev": "webpack-dev-server --config ./webpack/web-dev.config.js",
     "frontend:unit": "webpack-dev-server --config ./webpack/web-unit.config.js",
-    "server": "nodemon --watch 'src/backend/**/*.ts' --exec 'ts-node' src/backend/server.ts",
-    "web-dev:server": "concurrently \"npm run web-dev\" \"npm run server\"",
+    "backend": "nodemon --watch 'src/backend/**/*.ts' --exec 'ts-node' src/backend/server.ts",
+    "frontend:backend": "concurrently \"npm run frontend:dev\" \"npm run backend\"",
     "mocha-test": "mocha --require ts-node/register --require ./mocha/mochaSetup.ts \"src/**/*.test.{ts,tsx}\"",
     "test": "mocha-webpack --require ts-node/register --require ./mocha/mocha-webpackSetup.ts --webpack-config ./webpack/mocha-webpack.config.js",
     "test:frontend": "mocha-webpack --require ts-node/register --require ./mocha/mocha-webpackSetup.ts --webpack-config ./webpack/mocha-webpack.config.js \"src/frontend/**/*.test.{ts,tsx}\"",
