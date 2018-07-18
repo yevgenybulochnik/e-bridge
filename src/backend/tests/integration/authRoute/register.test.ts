@@ -30,8 +30,8 @@ describe('POST /auth/register', () => {
         .post('/api/v1/auth/register')
         .set('authorization', `Bearer ${token}`)
         .send({
-          firstname: 'john', 
-          lastname: 'smith', 
+          firstname: 'john',
+          lastname: 'smith',
           email: 'john.smith@test.com',
           password: 'johnsmithpass'
         })
