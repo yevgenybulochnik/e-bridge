@@ -38,8 +38,8 @@ describe('POST /auth/login', () => {
     it('should be type json', () => {
       expect(response.type).to.equal('application/json')
     })
-    it('should contain status and token keys in body', () => {
-      expect(response.body).to.have.all.keys(['status', 'token'])
+    it('should contain status, id, and token keys in body', () => {
+      expect(response.body).to.have.all.keys(['status', 'token', 'id'])
     })
     it('should return status code 200', () => {
       expect(response.status).to.equal(200)

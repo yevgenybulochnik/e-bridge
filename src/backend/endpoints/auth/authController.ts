@@ -24,11 +24,12 @@ export function registerUser(req: Request, res: Response, next: NextFunction) {
 export function loginUser(req: Request, res: Response, next: NextFunction) {
   const { email, password } = req.body
   return database.verifyUser(email, password)
-    .then(userClaims => {return encodeToken(userClaims)})
-    .then((token) => {
+    .then(userClaims => {return {token: encodeToken(userClaims), userID: userClaims.id}})
+    .then((userData) => {
       res.status(200).json({
         status: 'success',
-        token: token
+        id: userData.userID,
+        token: userData.token
       })
     })
     .catch((err) => {

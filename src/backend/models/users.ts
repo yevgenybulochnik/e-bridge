@@ -35,7 +35,7 @@ export function verifyUser(email: string, password: string) {
     })
     .then(passwordIsValid => {
       if (!passwordIsValid) throw 'Invalid Email/Password'
-      let jwtClaims = { id: validUser.id, email: validUser.email }
+      let jwtClaims = { id: validUser.id }
       return jwtClaims
     })
 }
