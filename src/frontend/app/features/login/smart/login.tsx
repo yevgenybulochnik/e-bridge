@@ -17,7 +17,12 @@ interface LoginState {
   [key: string]: any;
 }
 
-class Login extends React.Component<any, LoginState> {
+interface LoginProps {
+  loginHandler: (email: string, password: string) => void;
+  userIDState: any
+}
+
+class Login extends React.Component<LoginProps, LoginState> {
   state: LoginState = {
     isLoading: false,
     email: '',
@@ -33,30 +38,10 @@ class Login extends React.Component<any, LoginState> {
   }
 
   handleClick = () => {
-    this.setState({isLoading: !this.state.isLoading})
-    request.post('/auth/login', {
-      email: this.state.email,
-      password: this.state.password
-    })
-    .then(res => {
-      console.log(res)
-    })
-    .catch(err => {
-      this.setState({
-        isLoading: !this.state.isLoading,
-        tipIsOpen: !this.state.tipIsOpen
-      })
-      const { message } = err.response.data
-      if (typeof(message) == 'string') {
-        this.setState({
-          errorMessage: message
-        })
-      } else {
-        this.setState({
-          errorMessage: 'Opps! something went wrong'
-        })
-      }
-    })
+    const { loginHandler, userIDState } = this.props
+    const { email, password, isLoading } = this.state
+    this.setState({isLoading: !isLoading})
+    loginHandler(email, password)
   }
 
   handleTooltipClose = () => {
@@ -108,4 +93,22 @@ class Login extends React.Component<any, LoginState> {
   }
 }
 
-export default CSSModules(Login, styles)
+let styledComp = CSSModules(Login, styles)
+
+import { connect } from 'react-redux'
+import { loginRequest } from '../data/actions'
+const mapStateToProps = (state: any) => ({
+  userIDState: state.userID
+})
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    loginHandler: (email: string, password: string) => {
+      dispatch(loginRequest(email, password))
+    }
+  }
+}
+
+export const LoginTest = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(styledComp)
