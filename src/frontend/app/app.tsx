@@ -12,10 +12,12 @@ interface IAppProps {
 }
 
 function checkState(state: any) {
-  (typeof(state) === 'number')? true : false
+  let logedIn = typeof(state) === 'number' ? true : false
+  return logedIn
 }
 
 const App: React.SFC<IAppProps> = ({userIDState}) => {
+  console.log(userIDState)
   return checkState(userIDState) ? (
     <div>test</div>
   ) : (
