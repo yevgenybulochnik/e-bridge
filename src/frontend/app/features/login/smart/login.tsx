@@ -38,9 +38,8 @@ class Login extends React.Component<LoginProps, LoginState> {
   }
 
   handleClick = () => {
-    const { loginHandler, userIDState } = this.props
-    const { email, password, isLoading } = this.state
-    this.setState({isLoading: !isLoading})
+    const { loginHandler } = this.props
+    const { email, password } = this.state
     loginHandler(email, password)
   }
 
@@ -48,6 +47,21 @@ class Login extends React.Component<LoginProps, LoginState> {
     this.setState({
       tipIsOpen: false
     })
+  }
+
+  componentDidUpdate(prevProps: LoginProps, prevState: LoginState) {
+    const { userIDState } = this.props
+    if (prevProps.userIDState !== userIDState) {
+      if (userIDState === 'Requesting User Information') {
+        this.setState({isLoading: true})
+      } else if( typeof(userIDState) === 'string') {
+        this.setState({isLoading: false})
+        this.setState({errorMessage: userIDState})
+        this.setState({tipIsOpen: true})
+        this.setState({email: ''})
+        this.setState({password: ''})
+      }
+    }
   }
 
   render() {

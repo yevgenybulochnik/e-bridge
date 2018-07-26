@@ -8,7 +8,13 @@ function login(email: string, password: string) {
     password: password
   })
   .then(res => {return res.data})
-  .catch(err => {return err})
+  .catch(err => {
+    if (err.response) {
+      return err.response.data
+    } else {
+      return err
+    }
+  })
 }
 
 function* loginWorker(action: LoginAction) {
