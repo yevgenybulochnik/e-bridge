@@ -1,18 +1,34 @@
 import * as React from 'react';
 import * as CSSModules from 'react-css-modules';
+import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom';
 
 import Login from './features/login/containers/login'
 
 const styles = require('./app.sass')
 
+interface IAppProps {
+  userIDState: any;
+}
 
-const App: React.SFC = () => {
-  return (
+function checkState(state: any) {
+  (typeof(state) === 'number')? true : false
+}
+
+const App: React.SFC<IAppProps> = ({userIDState}) => {
+  return checkState(userIDState) ? (
+    <div>test</div>
+  ) : (
     <div styleName='app-container'>
       <Login />
     </div>
   )
 }
 
-export default CSSModules(App, styles)
+const mapStateToProps = (state: any) => ({
+  userIDState: state.userID
+})
+
+export default connect(
+  mapStateToProps
+)(CSSModules(App, styles))
