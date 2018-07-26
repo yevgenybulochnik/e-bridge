@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Tooltip from '@material-ui/core/Tooltip';
-const styles = require('./login.sass')
+const styles = require('./loginComponent.sass')
 
 interface LoginState {
   isLoading: boolean;
@@ -22,7 +22,7 @@ interface LoginProps {
   userIDState: any
 }
 
-class Login extends React.Component<LoginProps, LoginState> {
+class LoginComponent extends React.Component<LoginProps, LoginState> {
   state: LoginState = {
     isLoading: false,
     email: '',
@@ -109,22 +109,4 @@ class Login extends React.Component<LoginProps, LoginState> {
   }
 }
 
-let styledComp = CSSModules(Login, styles)
-
-import { connect } from 'react-redux'
-import { loginRequest } from '../data/actions'
-const mapStateToProps = (state: any) => ({
-  userIDState: state.userID
-})
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    loginHandler: (email: string, password: string) => {
-      dispatch(loginRequest(email, password))
-    }
-  }
-}
-
-export const LoginTest = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(styledComp)
+export default CSSModules(LoginComponent, styles)
