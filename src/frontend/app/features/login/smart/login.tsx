@@ -55,11 +55,13 @@ class Login extends React.Component<LoginProps, LoginState> {
       if (userIDState === 'Requesting User Information') {
         this.setState({isLoading: true})
       } else if( typeof(userIDState) === 'string') {
-        this.setState({isLoading: false})
-        this.setState({errorMessage: userIDState})
-        this.setState({tipIsOpen: true})
-        this.setState({email: ''})
-        this.setState({password: ''})
+        this.setState({
+          isLoading: false,
+          errorMessage: userIDState,
+          tipIsOpen: true,
+          email: '',
+          password: ''
+        })
       }
     }
   }
