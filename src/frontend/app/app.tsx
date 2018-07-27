@@ -17,9 +17,17 @@ function checkState(state: any) {
 }
 
 const App: React.SFC<IAppProps> = ({userIDState}) => {
-  console.log(userIDState)
   return checkState(userIDState) ? (
-    <div>test</div>
+    <div styleName='app-container'>
+      <div>statusbar holder</div>
+      <div styleName='nav-content-container'>
+        <div>Nav Placeholder</div>
+        <div styleName='content-container'>
+          <Switch>
+          </Switch>
+        </div>
+      </div>
+    </div>
   ) : (
     <div styleName='app-container'>
       <Login />
