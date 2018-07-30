@@ -28,9 +28,11 @@ class NavBar extends React.Component<INavProps, INavState> {
     return (
       <div styleName='nav-container'>
         <div styleName={navIsHidden? 'nav-hidden' : 'nav'}>
+          <div styleName='toggle-container'>
+            <button styleName={navIsHidden? 'toggle-active' : 'toggle-inactive'} onClick={handleNavToggle}></button>
+          </div>
           <div styleName='button-container'>
           </div>
-          <button styleName='toggle-button' onClick={handleNavToggle}></button>
         </div>
         <div styleName='content-container'>
           {this.props.children}

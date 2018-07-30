@@ -1,27 +1,52 @@
+@mixin nav
+  width: 15%
+  transition: width 1s
+  position: relative
+
+@mixin toggle-button
+  border-radius: 1em
+  border: none
+  box-shadow: 0 0 5px 0
+  background: white
+  padding: 0
+  width: 0.7em
+  height: 6em
+  float: right
+  position: relative
+  top: 45%
+  left: 0.3em
+  transition: background 0.5s
+  &:hover
+    background: lightblue
+  &:focus
+    outline: 0
+
 .nav-container
   display: flex
   flex-direction: row
   width: 100%
   height: 100%
 .nav
-  width: 15%
-  transition: width 1s
+  @include nav
 .nav-hidden
+  @include nav
   width: 4%
-  transition: width 1s
 .content-container
   width: 100%
   box-shadow: 0 0 7px 0
   border-radius: 1px
+  padding: 1em
 .button-container
   display: flex
   flex-direction: column
-.toggle-button
-  border-radius: 1em
-  padding: 0
-  width: 1em
-  height: 6em
-  float: right
-  position: relative
-  top: 45%
-  left: 0.5em
+  position: absolute
+  width: 100%
+.toggle-container
+  position: absolute
+  height: 100%
+  width: 100%
+.toggle-inactive
+  @include toggle-button
+.toggle-active
+  @include toggle-button
+  background: lightblue
