@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom';
 
 import Login from './features/login/containers/login'
+import NavBar from './features/nav/smart/navbar'
 
 const styles = require('./app.sass')
 
@@ -20,13 +21,9 @@ const App: React.SFC<IAppProps> = ({userIDState}) => {
   return checkState(userIDState) ? (
     <div styleName='app-container'>
       <div>statusbar holder</div>
-      <div styleName='nav-content-container'>
-        <div>Nav Placeholder</div>
-        <div styleName='content-container'>
-          <Switch>
-          </Switch>
-        </div>
-      </div>
+      <NavBar>
+        <div>test</div>
+      </NavBar>
     </div>
   ) : (
     <div styleName='app-container'>
