@@ -4,11 +4,11 @@ const styles = require('./navbutton.sass')
 
 interface INavButton {
   linkName: string;
-  //isActive: boolean;
+  isActive: boolean;
 }
 
-const NavButton: React.SFC<INavButton> = ({linkName}) => (
-  <button styleName='navbutton'>
+const NavButton: React.SFC<INavButton> = ({linkName, isActive}) => (
+  <button styleName={isActive? 'navbutton-active' : 'navbutton'}>
     {linkName}
   </button>
 )

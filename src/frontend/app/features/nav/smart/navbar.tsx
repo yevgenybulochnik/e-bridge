@@ -5,7 +5,8 @@ const styles = require('./navbar.sass')
 import NavButton from '../presentational/navbutton'
 
 interface INavState {
-  navIsHidden: boolean
+  navIsHidden: boolean;
+  navLinks: any;
 }
 
 interface INavProps {
@@ -14,7 +15,20 @@ interface INavProps {
 
 class NavBar extends React.Component<INavProps, INavState> {
   state: INavState = {
-    navIsHidden: false
+    navIsHidden: false,
+    navLinks: [
+      {linkName: 'Designer', isActive: false},
+      {linkName: 'Dashboard', isActive: false},
+      {linkName: 'Analytics', isActive: false},
+      {linkName: 'Register', isActive: true}
+    ]
+  }
+
+  renderNavButtons = () => {
+    const { navLinks } = this.state
+    return navLinks.map((button: any, index: number) => {
+      return <NavButton key={index} linkName={button.linkName} isActive={button.isActive}/>
+    })
   }
 
   handleNavToggle = () => {
@@ -25,8 +39,9 @@ class NavBar extends React.Component<INavProps, INavState> {
   }
 
   render() {
-    const { handleNavToggle } = this
-    const { navIsHidden } = this.state
+    const { handleNavToggle, renderNavButtons } = this
+    const { navIsHidden, navLinks } = this.state
+
     return (
       <div styleName='nav-container'>
         <div styleName={navIsHidden? 'nav-hidden' : 'nav'}>
@@ -34,10 +49,7 @@ class NavBar extends React.Component<INavProps, INavState> {
             <button styleName={navIsHidden? 'toggle-active' : 'toggle-inactive'} onClick={handleNavToggle}></button>
           </div>
           <div styleName='button-container'>
-            <NavButton linkName='Designer'/>
-            <NavButton linkName='DashBoard'/>
-            <NavButton linkName='Analytics'/>
-            <NavButton linkName='Register'/>
+            {renderNavButtons()}
           </div>
         </div>
         <div styleName='content-container'>

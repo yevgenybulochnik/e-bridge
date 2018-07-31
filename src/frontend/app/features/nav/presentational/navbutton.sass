@@ -1,4 +1,4 @@
-.navbutton
+@mixin navbutton
   font-family: Arial
   border: none
   background: #bbdefb
@@ -14,3 +14,10 @@
     color: white
   &:focus
     outline: 0
+
+.navbutton
+  @include navbutton
+.navbutton-active
+  @include navbutton
+  background: #1E88E5
+  color: white
