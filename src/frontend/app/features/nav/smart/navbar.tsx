@@ -2,6 +2,8 @@ import * as React from 'react';
 import * as CSSModules from 'react-css-modules';
 const styles = require('./navbar.sass')
 
+import NavButton from '../presentational/navbutton'
+
 interface INavState {
   navIsHidden: boolean
 }
@@ -32,6 +34,10 @@ class NavBar extends React.Component<INavProps, INavState> {
             <button styleName={navIsHidden? 'toggle-active' : 'toggle-inactive'} onClick={handleNavToggle}></button>
           </div>
           <div styleName='button-container'>
+            <NavButton linkName='Designer'/>
+            <NavButton linkName='DashBoard'/>
+            <NavButton linkName='Analytics'/>
+            <NavButton linkName='Register'/>
           </div>
         </div>
         <div styleName='content-container'>
