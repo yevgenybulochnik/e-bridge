@@ -17,10 +17,10 @@ class NavBar extends React.Component<INavProps, INavState> {
   state: INavState = {
     navIsHidden: false,
     navLinks: [
-      {linkName: 'Designer', isActive: false},
-      {linkName: 'Dashboard', isActive: false},
-      {linkName: 'Analytics', isActive: false},
-      {linkName: 'Register', isActive: false}
+      {linkName: 'Designer', isActive: false, path: '/designer'},
+      {linkName: 'Dashboard', isActive: false, path: '/dashboard'},
+      {linkName: 'Analytics', isActive: false, path: '/analytics'},
+      {linkName: 'Register', isActive: false, path: '/register'}
     ]
   }
 
@@ -31,8 +31,7 @@ class NavBar extends React.Component<INavProps, INavState> {
       return (
         <NavButton
           key={index}
-          linkName={button.linkName}
-          isActive={button.isActive}
+          {...button}
           onButtonClick={() => handleButtonClick(index)}
         />
       )

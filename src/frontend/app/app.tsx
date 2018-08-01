@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as CSSModules from 'react-css-modules';
 import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 import Login from './features/login/containers/login'
 import NavBar from './features/nav/smart/navbar'
@@ -17,12 +18,17 @@ function checkState(state: any) {
   return logedIn
 }
 
+// Test routing
+const RouteTest = () => (<div>Test Routing</div>)
+
 const App: React.SFC<IAppProps> = ({userIDState}) => {
   return checkState(userIDState) ? (
     <div styleName='app-container'>
       <div>statusbar holder</div>
       <NavBar>
-        <div>test</div>
+        <Switch>
+          <Route exact path='/designer' component={RouteTest} />
+        </Switch>
       </NavBar>
     </div>
   ) : (
@@ -36,6 +42,6 @@ const mapStateToProps = (state: any) => ({
   userIDState: state.userID
 })
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps
-)(CSSModules(App, styles))
+)(CSSModules(App, styles)) as any)
