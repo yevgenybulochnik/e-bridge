@@ -1,4 +1,3 @@
-// Temp combine model and controller for testing purposes
 import { Request, Response, NextFunction } from 'express';
 import * as database from '../../models'
 import { encodeToken } from '../jwtProcessing'
