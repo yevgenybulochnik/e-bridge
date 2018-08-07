@@ -17,6 +17,7 @@ export function seed(knex: Knex) {
         firstname: 'yevgeny',
         lastname: 'bulochnik',
         email: 'yevgeny.bulochnik@gmail.com',
+        role: 'admin',
         password: hash
       })
     })

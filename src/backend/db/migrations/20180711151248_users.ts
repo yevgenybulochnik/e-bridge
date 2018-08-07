@@ -7,6 +7,7 @@ export function up(knex: Knex, promise: Promise<any>) {
     table.string('lastname').notNullable()
     table.string('email').notNullable()
     table.string('password').notNullable()
+    table.string('role').notNullable()
   })
 };
 
