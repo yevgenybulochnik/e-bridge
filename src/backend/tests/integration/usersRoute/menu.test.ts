@@ -32,8 +32,18 @@ describe('Get /users/:id/menu', () => {
     })
     it('should exist', () => {
       expect(response).to.exist
-      console.log(response.body)
     })
-    it('should be type json')
+    it('should be type json', () => {
+      expect(response.type).to.equal('application/json')
+    })
+    it('should return status code 200', () => {
+      expect(response.status).to.equal(200)
+    })
+    it('should contain status, and links keys in body', () => {
+      expect(response.body).to.have.all.keys(['status', 'links'])
+    })
+    it('should return status: "success" in body', () => {
+      expect(response.body.status).to.equal('success')
+    })
   })
 })
