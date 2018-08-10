@@ -4,6 +4,6 @@ import authenticate from '../authMiddleware';
 
 const UsersRouter = Router()
 
-UsersRouter.get('/:userID/menu', controller.getUserMenu)
+UsersRouter.get('/:userID/menu', authenticate, controller.getUserMenu)
 
 export default UsersRouter
