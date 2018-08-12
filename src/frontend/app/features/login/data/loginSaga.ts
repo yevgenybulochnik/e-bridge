@@ -20,9 +20,10 @@ function login(email: string, password: string) {
 function* loginWorker(action: LoginAction) {
   const { email, password } = action.payload as ILoginPayload
   const response = yield call(login, email, password)
-  const { id, message } = response
+  const { id, token, message } = response
   if (id) {
     yield put(loginSuccess(id))
+    yield sessionStorage.setItem('token', token)
   } else {
     yield put(loginFailure(message))
   }
