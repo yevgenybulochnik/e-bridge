@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
-import Login from './features/login/containers/login'
-import NavBar from './features/nav/smart/navbar'
+import Login from './features/login/containers/login';
+import NavBar from './features/nav/containers/navBar';
 
 const styles = require('./app.sass')
 

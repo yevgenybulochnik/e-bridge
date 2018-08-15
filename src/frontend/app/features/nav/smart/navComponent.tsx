@@ -1,6 +1,7 @@
 import * as React from 'react';
+import request from '@frontend/app/axios';
 import * as CSSModules from 'react-css-modules';
-const styles = require('./navbar.sass')
+const styles = require('./navComponent.sass')
 
 import NavButton from '../presentational/navbutton'
 
@@ -10,17 +11,13 @@ interface INavState {
 }
 
 interface INavProps {
-
+  userID: number;
 }
 
-class NavBar extends React.Component<INavProps, INavState> {
+class NavComponent extends React.Component<INavProps, INavState> {
   state: INavState = {
     navIsHidden: false,
     navLinks: [
-      {linkName: 'Designer', isActive: false, path: '/designer'},
-      {linkName: 'Dashboard', isActive: false, path: '/dashboard'},
-      {linkName: 'Analytics', isActive: false, path: '/analytics'},
-      {linkName: 'Register', isActive: false, path: '/register'}
     ]
   }
 
@@ -58,6 +55,18 @@ class NavBar extends React.Component<INavProps, INavState> {
     this.setState({navLinks: newLinkState})
   }
 
+  componentDidMount() {
+    const { userID } = this.props
+    const token = sessionStorage.getItem('token')
+    return request(`/users/${userID}/menu`, {headers: {'Authorization': `Bearer ${token}`}})
+      .then(res => {
+        const { links } = res.data
+        this.setState({
+          navLinks: links
+        })
+      })
+  }
+
   render() {
     const { handleNavToggle, renderNavButtons } = this
     const { navIsHidden, navLinks } = this.state
@@ -80,4 +89,4 @@ class NavBar extends React.Component<INavProps, INavState> {
   }
 }
 
-export default CSSModules(NavBar, styles)
+export default CSSModules(NavComponent, styles)

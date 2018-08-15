@@ -3,7 +3,8 @@ import * as database from '../../models'
 
 export function formatLinks(menuLink: any[]) {
   return menuLink.map((link, index) => {
-    return {linkName: link.link_name, path: link.link_path, type: link.link_type, isActive: false}
+    const { link_name, link_path, link_type } = link
+    return {linkName: link_name, path: link_path, type: link_type, isActive: false}
   })
 }
 
