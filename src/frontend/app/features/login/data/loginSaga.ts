@@ -22,8 +22,8 @@ function* loginWorker(action: LoginAction) {
   const response = yield call(login, email, password)
   const { id, token, message } = response
   if (id) {
-    yield put(loginSuccess(id))
     yield sessionStorage.setItem('token', token)
+    yield put(loginSuccess(id))
   } else {
     yield put(loginFailure(message))
   }
