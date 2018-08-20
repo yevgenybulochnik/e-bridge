@@ -7,6 +7,8 @@ import { withRouter } from 'react-router';
 import Login from './features/login/containers/login';
 import NavBar from './features/nav/containers/navBar';
 
+import Designer from './views/designer/designer'
+
 const styles = require('./app.sass')
 
 interface IAppProps {
@@ -18,16 +20,13 @@ function checkState(state: any) {
   return logedIn
 }
 
-// Test routing
-const RouteTest = () => (<div>Test Routing</div>)
-
 const App: React.SFC<IAppProps> = ({userIDState}) => {
   return checkState(userIDState) ? (
     <div styleName='app-container'>
       <div>statusbar holder</div>
       <NavBar>
         <Switch>
-          <Route exact path='/designer' component={RouteTest} />
+          <Route exact path='/designer' component={Designer} />
         </Switch>
       </NavBar>
     </div>
