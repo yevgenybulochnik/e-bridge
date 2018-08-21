@@ -11,7 +11,7 @@ module.exports = merge(baseConfig, {
   devtool: 'source-map',
   devServer: {
     overlay: {
-      warnings: true,
+      //warnings: true,
       errors: true,
     },
     port: process.env.FRONTEND_PORT || 8080,
